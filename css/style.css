@@ -1,0 +1,39 @@
+#super{
+	/*background-color: white;
+	opacity: .75;*/
+	/*border-radius: 50%;*/
+}
+.info{
+	background-color: azure;
+	opacity: .75;
+	border-radius: 25px;
+}
+p{
+	text-align: center;
+	color: black;
+	font-weight: bolder;
+	font-size: 64px;
+}
+input{
+	justify-content: center;
+	width:100%;
+	color:black !important;
+	text-align: center;
+}
+body{
+	/*background-color: #000000 !important;*/
+	background-image: url("marvel14.jpg");
+	/*background-repeat: repeat-y;*/
+	background-size: 100%;
+}
+
+.search{
+	background-color:darkred;
+	/*#f44336*/
+	/*opacity: 1;*/
+	color :white;
+	border: none;
+	font-size: 36px;
+	border-radius: 12px;
+	padding: 14px 40px
+}

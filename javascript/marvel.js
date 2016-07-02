@@ -32,7 +32,9 @@ carousel();
 					//try to empty Super NAME 
 					
 					var superHero = $('#superHero').val();
+					getYouTube();
 					getMarvelResponse();
+					
 					$('#superHero').val('');
 
 					dbRef.push(superHero);
@@ -76,4 +78,38 @@ function getMarvelResponse() {
       // the error codes are listed on the dev site
     	console.log(err);
     });
+};
+
+
+function getYouTube() {
+	
+	var characterName  = $('#superHero').val();
+	var youtubeApi = "AIzaSyBMbfmuvlnHD76RoFoCgRrzoTR8yLU_QS8";
+	var youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+ characterName +"&key=" + youtubeApi;
+	console.log(youtubeUrl);
+	
+$.ajax({
+  		url: youtubeUrl,
+  		method: 'GET'
+    })
+    .done(function(data) {
+      // sort of a long dump you will need to sort throughurl
+    	console.log(data);
+
+
+    	var videoId = data.items[0].id.videoId
+    	var videoTitle = data.items[0].snippet.title
+    	console.log(videoId)
+    	console.log(videoTitle)
+    	var videoFrame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/"+videoId+"' frameborder='0' type='text/html'></iframe>"
+    	var final="<div id='title'>"+videoTitle+"</div><div>"+videoFrame+"</div>";
+    	// videoTitle.append(videoFrame);
+    	$('.embedVideos').html(final);
+    })
+    // .fail(function(err){
+    //   // the error codes are listed on the dev site
+    // 	console.log(err);
+    // });
+
+return false
 };

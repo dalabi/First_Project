@@ -81,14 +81,17 @@ function getMarvelResponse() {
 
     	 var p = $('<p>');
     	 p.addClass('description');
-    	 p.text(description);
-    	 $('.content').append(p);
+    	 p.html(description);
+    	 $('.content').prepend(p);
+
     	 // $('p').addclass("description");	
 
     	 //TESTING FOR IMAGE 
     	 var urlImage = data.data.results[0].thumbnail.path;
     	 var extensionImage = data.data.results[0].thumbnail.extension;
     	 var backImage = urlImage + "." + extensionImage;
+
+    	 //converted image to a complete link
 
     	 console.log(urlImage);
     	 console.log(extensionImage);

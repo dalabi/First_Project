@@ -30,7 +30,7 @@ carousel();
 
 				$('#super').on('submit', function () {
 					//try to empty Super NAME 
-					
+					// $('.thumbnail').empty();
 					var superHero = $('#superHero').val();
 					getMarvelResponse();
 					$('#superHero').val('');
@@ -59,7 +59,7 @@ function getMarvelResponse() {
                                                                                 
  	var ts = new Date().getTime();
  	var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-	var limit = "5"
+	var limit ="10"
   	var url = 'http://gateway.marvel.com:80/v1/public/characters?name='+ characterName +"&limit="+ limit +"&apikey="+PUBLIC_KEY+"&ts="+ts+"&hash="+hash;
 
   	console.log(url);
@@ -70,10 +70,39 @@ function getMarvelResponse() {
     })
     .done(function(data) {
       // sort of a long dump you will need to sort throughurl
-    	console.log(data);
+      var description = data.data.results[0].description
+
+      $('<p>').html('Description: ' + description);
+		
+		 
+    	 console.log(description);
+    	 console.log(data.data.results[0].description);
+    	 console.log(data);
+
+    	 var p = $('<p>');
+    	 p.addClass('description');
+    	 p.text(description);
+    	 $('.content').append(p);
+    	 // $('p').addclass("description");	
+
+    	 //TESTING FOR IMAGE 
+    	 var urlImage = data.data.results[0].thumbnail.path;
+    	 var extensionImage = data.data.results[0].thumbnail.extension;
+    	 var backImage = urlImage + "." + extensionImage;
+
+    	 console.log(urlImage);
+    	 console.log(extensionImage);
+    	 console.log(backImage);
+    	 // var completeImage = (urlImage + ".jpg");
+    	 // $('.content').empty();
+    	 $('.thumbnail').empty();
+    	 //appends the url to the image
+    	 $('.thumbnail').append('<img src="'+ backImage +'">');
+
     })
     .fail(function(err){
       // the error codes are listed on the dev site
     	console.log(err);
     });
 };
+

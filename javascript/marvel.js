@@ -1,11 +1,11 @@
-var audio = new Audio('javascript/xmen.mp3');
-	audio.play();
-	audio.loop= true;
+// var audio = new Audio('javascript/xmen.mp3');
+// 	audio.play();
+// 	audio.loop= true;
 
 var myIndex = 0;
 carousel();
 
-					function carousel() {
+	function carousel() {
 					    var i;
 					    var x = document.getElementsByClassName("mySlides");
 					    for (i = 0; i < x.length; i++) {
@@ -30,11 +30,10 @@ carousel();
 
 				$('#super').on('submit', function () {
 					//try to empty Super NAME 
-					
+					// $('.thumbnail').empty();
 					var superHero = $('#superHero').val();
-					getYouTube();
 					getMarvelResponse();
-					
+					getYouTube();
 					$('#superHero').val('');
 
 					dbRef.push(superHero);
@@ -61,7 +60,7 @@ function getMarvelResponse() {
                                                                                 
  	var ts = new Date().getTime();
  	var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-	var limit = "5"
+	var limit ="10"
   	var url = 'http://gateway.marvel.com:80/v1/public/characters?name='+ characterName +"&limit="+ limit +"&apikey="+PUBLIC_KEY+"&ts="+ts+"&hash="+hash;
 
   	console.log(url);
@@ -72,7 +71,38 @@ function getMarvelResponse() {
     })
     .done(function(data) {
       // sort of a long dump you will need to sort throughurl
-    	console.log(data);
+      var description = data.data.results[0].description
+
+      $('<p>').html('Description: ' + description);
+		
+		 
+    	 console.log(description);
+    	 console.log(data.data.results[0].description);
+    	 console.log(data);
+
+    	 var p = $('<p>');
+    	 p.addClass('description');
+    	 p.html(description);
+    	 $('.content').html(p);
+
+    	 // $('p').addclass("description");	
+
+    	 //TESTING FOR IMAGE 
+    	 var urlImage = data.data.results[0].thumbnail.path;
+    	 var extensionImage = data.data.results[0].thumbnail.extension;
+    	 var backImage = urlImage + "." + extensionImage;
+
+    	 //converted image to a complete link
+
+    	 console.log(urlImage);
+    	 console.log(extensionImage);
+    	 console.log(backImage);
+    	 // var completeImage = (urlImage + ".jpg");
+    	 // $('.content').empty();
+    	 $('.thumbnail').empty();
+    	 //appends the url to the image
+    	 $('.thumbnail').append('<img src="'+ backImage +'">');
+
     })
     .fail(function(err){
       // the error codes are listed on the dev site
@@ -104,7 +134,7 @@ $.ajax({
     	var videoFrame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/"+videoId+"' frameborder='0' type='text/html'></iframe>"
     	var final="<div id='title'>"+videoTitle+"</div><div>"+videoFrame+"</div>";
     	// videoTitle.append(videoFrame);
-    	$('.embedVideos').html(final);
+    	$('.contentVideos').html(final);
     })
     // .fail(function(err){
     //   // the error codes are listed on the dev site

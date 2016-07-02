@@ -37,3 +37,9 @@ body{
 	border-radius: 12px;
 	padding: 14px 40px
 }
+.description{
+	font-size: 24px;
+	color: white;
+	background-color:darkred; 
+	/*background-image: url(image);*/
+}

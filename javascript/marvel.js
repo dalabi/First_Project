@@ -32,8 +32,11 @@ $('#super').on('submit', function () {
 	//try to empty Super NAME 
 	// $('.thumbnail').empty();
 	var superHero = $('#superHero').val();
+
 	getMarvelResponse();
 	getYouTube();
+	_cb_findItemsByKeywords()
+	
 	$('#superHero').val('');
 
 	dbRef.push(superHero);
@@ -164,6 +167,35 @@ $.ajax({
     //   // the error codes are listed on the dev site
     // 	console.log(err);
     // });
-
-return false
 };
+
+function _cb_findItemsByKeywords(){
+	var characterName  = $('#superHero').val();
+	var search = characterName + " marvel collectibles"
+	var ebayApi = "ElsaJose-Marvelme-PRD-599eca255-9a8b3c16"
+	 var url = "http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=5";
+      $.ajax({
+        url: url,
+        dataType: "jsonp",
+        // data: {keywords: characterName+"collectibles"},
+        success: function(ebayData){
+            var items = ebayData.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+            var html = [];
+            $(html).push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
+
+            for (var i = 0; i < items.length; ++i)   {
+                var item     = items[i];
+                var title    = item.title;
+                var pic      = item.galleryURL;
+                var viewitem = item.viewItemURL;
+
+                if (null != title && null != viewitem) {
+                    html.push('<tr><td>' + '<img class="ebayImg" src="' + pic + '" border="0">' + '</td>' +
+                    '<td><a class="ebayTitle" href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
+                }
+            }
+            // html.push('</tbody></table>');
+            $(".ebayContent1").append(html);
+        }
+        });
+  }

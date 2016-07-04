@@ -68,3 +68,15 @@ body{
 {
 	text-align: center;
 }
+
+.ebayTitle
+{
+	color: white;
+	font-size: 20px;
+}
+
+.ebayImg
+{
+	width: 150px;
+	margin: 10px 10px 10px 10px;
+}

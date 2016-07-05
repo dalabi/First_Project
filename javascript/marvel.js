@@ -62,6 +62,7 @@ function getMarvelResponse() {
 
     $.ajax({
       url: url,
+      dataType: "jsonp"
       method: 'GET'
     })
     .done(function(data) {
@@ -168,7 +169,8 @@ function _cb_findItemsByKeywords(){
     $.ajax({
         url: url,
         dataType: "jsonp",
-        success: function(ebayData){
+      })
+      .done(function(ebayData){
             var items = ebayData.findItemsByKeywordsResponse[0].searchResult[0].item || [];
             var html = [];
             $('.memorabiliaTitle').html('<h2 class="mainTitles">Memorabilia</h2>')
@@ -186,8 +188,7 @@ function _cb_findItemsByKeywords(){
                 }
             }
             $(".ebayContent1").html(html);
-        }
-    });
+        })
   }
 
 

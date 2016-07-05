@@ -13,8 +13,8 @@ function carousel() {
 	}
 	myIndex++;
 	if (myIndex > x.length) {myIndex = 1}
-	x[myIndex-1].style.display = "block";
-	setTimeout(carousel, 2000); // Change image every 2 seconds
+		x[myIndex-1].style.display = "block";
+		setTimeout(carousel, 2000); // Change image every 2 seconds
 }
  // Initialize Firebase
 var config = {
@@ -32,7 +32,7 @@ $('#super').on('submit', function () {
 	//try to empty Super NAME 
 	// $('.thumbnail').empty();
 	var superHero = $('#superHero').val();
-
+	validateInput()
 	getMarvelResponse();
 	getYouTube();
 	_cb_findItemsByKeywords()
@@ -113,23 +113,15 @@ function getYouTube() {
 	var youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+ characterName + "originstory&key=" + youtubeApi;
 	console.log(youtubeUrl);
 	
-$.ajax({
+	$.ajax({
   		url: youtubeUrl,
   		method: 'GET'
     })
     .done(function(data) {
     	console.log(data);
 
-    	// for (var i = 0; i <= data.items.lenght; i++){
-    	// 	var videoId = data.items[i].id.videoId
-    	// 	var videoTitle = data.items[i].snippet.title
-    	// 	console.log(videoId)
-    	// 	console.log(videoTitle)
-    	// 	var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId+"' frameborder='0' type='text/html'></iframe>"
-    	// 	var final="<div id='title'>"+videoTitle+"</div><div>"+videoFrame+"</div>"
-
-    	// 	$('.contentVideos').html(final)
-    	// }
+    	$('.videoTitle').html('<h2 class="mainTitles">Origin Story</h2>')
+   
     	var videoId1 = data.items[0].id.videoId
     	var videoTitle1 = data.items[0].snippet.title
     	console.log(videoId1)
@@ -173,14 +165,14 @@ function _cb_findItemsByKeywords(){
 	var characterName  = $('#superHero').val();
 	var search = characterName + " marvel collectibles"
 	var ebayApi = "ElsaJose-Marvelme-PRD-599eca255-9a8b3c16"
-	 var url = "http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=5";
-      $.ajax({
+	var url = "http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=8";
+    $.ajax({
         url: url,
         dataType: "jsonp",
-        // data: {keywords: characterName+"collectibles"},
         success: function(ebayData){
             var items = ebayData.findItemsByKeywordsResponse[0].searchResult[0].item || [];
             var html = [];
+            $('.memorabiliaTitle').html('<h2 class="mainTitles">Memorabilia</h2>')
             $(html).push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
 
             for (var i = 0; i < items.length; ++i)   {
@@ -194,8 +186,23 @@ function _cb_findItemsByKeywords(){
                     '<td><a class="ebayTitle" href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
                 }
             }
-            // html.push('</tbody></table>');
-            $(".ebayContent1").append(html);
+            $(".ebayContent1").html(html);
         }
-        });
+    });
   }
+
+
+function validateInput (){
+  	var characterName  = $('#superHero').val();
+  	if (characterName === ""){
+  		var errorCode = $('.error').html("<h4 class='errorText'>*Please Add a Valid Name</h4>")
+  		$(".fullContent").hide();	
+  		
+  	}
+  	else{
+  		$(".fullContent").show();
+  		$('.error').empty();
+
+  	}
+}
+

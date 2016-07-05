@@ -89,7 +89,7 @@ body{
 
 .mainTitles
 {
-	font-size: 80px;
+	font-size: 65px;
 	margin-top: 30px;
 }
 
@@ -99,4 +99,11 @@ body{
 	text-align: right;
 	font-size: 20px;
 
+}
+
+.mainName
+{
+	font-size: 80px;
+	color: white;
+	text-align: center;
 }

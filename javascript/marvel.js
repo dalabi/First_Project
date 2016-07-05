@@ -49,14 +49,6 @@ $('#super').on('submit', function () {
 var PRIV_KEY = "df4fb8031dbc7cf2f465816737e0ea13379128b0"
 var PUBLIC_KEY = "a9a21fdf8a29de1099f5d2548b48a5d7";
 
-
-// var xhr = new XMLHttpRequest();
-// xhr.open("get", "http://gateway.marvel.com", true);
-// xhr.onload = function(){  //instead of onreadystatechange
-//     //do something
-// };
-// xhr.send(null);
-
 function getMarvelResponse() {
   var characterName  = $('#superHero').val();
                                                                                 
@@ -85,6 +77,10 @@ function getMarvelResponse() {
        p.addClass('description');
        p.html(description);
        $('.content').html(p);
+
+        var name = data.data.results[0].name;
+        console.log(name);
+        $('.name').html("<h2 class='mainName'>"+name+"</h2>");
 
        // $('p').addclass("description"); 
 
@@ -130,8 +126,6 @@ function getYouTube() {
    
       var videoId1 = data.items[0].id.videoId
       var videoTitle1 = data.items[0].snippet.title
-      console.log(videoId1)
-      console.log(videoTitle1)
       var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId1+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle1+"</div><div class='frame'>"+videoFrame+"</div>";
       // videoTitle.append(videoFrame);
@@ -139,24 +133,18 @@ function getYouTube() {
 
       var videoId2 = data.items[1].id.videoId
       var videoTitle2 = data.items[1].snippet.title
-      console.log(videoId2)
-      console.log(videoTitle2)
       var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId2+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle2+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos2').html(final);
 
       var videoId3 = data.items[2].id.videoId
       var videoTitle3 = data.items[2].snippet.title
-      console.log(videoId3)
-      console.log(videoTitle3)
       var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId3+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle3+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos3').html(final);
 
       var videoId4 = data.items[3].id.videoId
       var videoTitle4 = data.items[3].snippet.title
-      console.log(videoId4)
-      console.log(videoTitle4)
       var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId4+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle4+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos4').html(final);

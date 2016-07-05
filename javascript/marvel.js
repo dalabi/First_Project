@@ -56,7 +56,7 @@ function getMarvelResponse() {
   var ts = new Date().getTime();
   var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
   var limit ="10"
-    var url = 'http://gateway.marvel.com:80/v1/public/characters?name='+ characterName +"&limit="+ limit +"&apikey="+PUBLIC_KEY+"&ts="+ts+"&hash="+hash;
+    var url = 'https://gateway.marvel.com:80/v1/public/characters?name='+ characterName +"&limit="+ limit +"&apikey="+PUBLIC_KEY+"&ts="+ts+"&hash="+hash;
 
     console.log(url);
 
@@ -165,7 +165,7 @@ function _cb_findItemsByKeywords(){
   var characterName  = $('#superHero').val();
   var search = characterName + " marvel collectibles"
   var ebayApi = "ElsaJose-Marvelme-PRD-599eca255-9a8b3c16"
-  var url = "http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=8";
+  var url = "https://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=8";
     $.ajax({
         url: url,
         dataType: "jsonp",

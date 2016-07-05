@@ -40,10 +40,6 @@ body{
 .description{
 	font-size: 24px;
 	color: white;
-<<<<<<< HEAD
-	background-color:darkred; 
-	/*background-image: url(image);*/
-=======
 	/*background-image: url(image);*/
 }
 
@@ -103,5 +99,4 @@ body{
 	text-align: right;
 	font-size: 20px;
 
->>>>>>> Elsa-Branch
 }

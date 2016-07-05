@@ -65,10 +65,9 @@ function getMarvelResponse() {
       method: 'GET'
     })
     .done(function(data) {
-      // sort of a long dump you will need to sort throughurl
       var description = data.data.results[0].description
 
-        $('<p>').html('Description: ' + description);
+      $('<p>').html('Description: ' + description);
     
      
        console.log(description);
@@ -126,7 +125,7 @@ function getYouTube() {
       var videoTitle1 = data.items[0].snippet.title
       console.log(videoId1)
       console.log(videoTitle1)
-      var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId1+"' frameborder='0' type='text/html'></iframe>"
+      var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId1+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle1+"</div><div class='frame'>"+videoFrame+"</div>";
       // videoTitle.append(videoFrame);
       $('.contentVideos').html(final);
@@ -135,7 +134,7 @@ function getYouTube() {
       var videoTitle2 = data.items[1].snippet.title
       console.log(videoId2)
       console.log(videoTitle2)
-      var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId2+"' frameborder='0' type='text/html'></iframe>"
+      var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId2+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle2+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos2').html(final);
 
@@ -143,7 +142,7 @@ function getYouTube() {
       var videoTitle3 = data.items[2].snippet.title
       console.log(videoId3)
       console.log(videoTitle3)
-      var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId3+"' frameborder='0' type='text/html'></iframe>"
+      var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId3+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle3+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos3').html(final);
 
@@ -151,7 +150,7 @@ function getYouTube() {
       var videoTitle4 = data.items[3].snippet.title
       console.log(videoId4)
       console.log(videoTitle4)
-      var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId4+"' frameborder='0' type='text/html'></iframe>"
+      var videoFrame = "<iframe width='320' height='193' src='https://www.youtube.com/embed/"+videoId4+"' frameborder='0' type='text/html'></iframe>"
       var final="<div id='title'>"+videoTitle4+"</div><div class='frame'>"+videoFrame+"</div>";
       $('.contentVideos4').html(final);
     })

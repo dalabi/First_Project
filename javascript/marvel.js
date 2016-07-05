@@ -62,7 +62,7 @@ function getMarvelResponse() {
 
     $.ajax({
       url: url,
-      dataType: "jsonp"
+      dataType: "jsonp",
       method: 'GET'
     })
     .done(function(data) {

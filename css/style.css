@@ -40,6 +40,68 @@ body{
 .description{
 	font-size: 24px;
 	color: white;
+<<<<<<< HEAD
 	background-color:darkred; 
 	/*background-image: url(image);*/
+=======
+	/*background-image: url(image);*/
+}
+
+.contentVideos, .contentVideos2, .contentVideos3
+{
+	background-color:darkred;
+	text-align: center,
+
+}
+
+#title
+{
+	text-align: center;
+	font-size: 15px;
+	color:white;
+	margin-top: 25px;
+}
+.fullContent
+{
+	background-color: rgba(139, 0, 0, 0.9);
+	margin-bottom: 20px;
+}
+
+.frame
+{
+	text-align: center;
+}
+
+.ebayTitle
+{
+	color: white;
+	font-size: 20px;
+}
+
+.ebayImg
+{
+	width: 150px;
+	margin: 10px 10px 10px 10px;
+}
+
+.memorabiliaTitle, .videoTitle
+{
+	color: white;
+	text-align: center;
+	/*margin: 35px 0 10px 0;*/
+}
+
+.mainTitles
+{
+	font-size: 80px;
+	margin-top: 30px;
+}
+
+.errorText
+{
+	color: white;
+	text-align: right;
+	font-size: 20px;
+
+>>>>>>> Elsa-Branch
 }

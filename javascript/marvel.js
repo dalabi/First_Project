@@ -1,10 +1,11 @@
-var audio = new Audio('javascript/xmen.mp3');
-	audio.play();
-	audio.loop= true;
+// var audio = new Audio('javascript/xmen.mp3');
+// 	audio.play();
+// 	audio.loop= true;
 
 var myIndex = 0;
 carousel();
 
+<<<<<<< HEAD
 					function carousel() {
 					    var i;
 					    var x = document.getElementsByClassName("mySlides");
@@ -47,8 +48,48 @@ carousel();
 // 	getMarvelResponse();
 // 	return false;
 // })
+=======
+function carousel() {
+	var i;
+	var x = document.getElementsByClassName("mySlides");
+	for (i = 0; i < x.length; i++) {
+	   x[i].style.display = "none";
+	}
+	myIndex++;
+	if (myIndex > x.length) {myIndex = 1}
+		x[myIndex-1].style.display = "block";
+		setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+ // Initialize Firebase
+var config = {
+apiKey: "AIzaSyCR4RmxFKnO64EcHoSLhEj0IwpTKBRTBPM",
+authDomain: "feisty-wall-135723.firebaseapp.com",
+databaseURL: "https://feisty-wall-135723.firebaseio.com",
+storageBucket: "feisty-wall-135723.appspot.com",
+};
+>>>>>>> Elsa-Branch
 
+firebase.initializeApp(config);
+//this has to go after the copied stuff from firebase
+var dbRef = firebase.database().ref();
 
+$('#super').on('submit', function () {
+	//try to empty Super NAME 
+	// $('.thumbnail').empty();
+	var superHero = $('#superHero').val();
+	validateInput()
+	getMarvelResponse();
+	getYouTube();
+	_cb_findItemsByKeywords()
+	
+	$('#superHero').val('');
+
+	dbRef.push(superHero);
+	
+	console.log(superHero);
+	
+	return false;
+});
 
 var PRIV_KEY = "df4fb8031dbc7cf2f465816737e0ea13379128b0"
 var PUBLIC_KEY = "a9a21fdf8a29de1099f5d2548b48a5d7";
@@ -70,9 +111,15 @@ function getMarvelResponse() {
     })
     .done(function(data) {
       // sort of a long dump you will need to sort throughurl
+<<<<<<< HEAD
       var description = data.data.results[0].description
 
       $('<p>').html('Description: ' + description);
+=======
+    	var description = data.data.results[0].description
+
+      	$('<p>').html('Description: ' + description);
+>>>>>>> Elsa-Branch
 		
 		 
     	 console.log(description);
@@ -81,8 +128,14 @@ function getMarvelResponse() {
 
     	 var p = $('<p>');
     	 p.addClass('description');
+<<<<<<< HEAD
     	 p.text(description);
     	 $('.content').append(p);
+=======
+    	 p.html(description);
+    	 $('.content').html(p);
+
+>>>>>>> Elsa-Branch
     	 // $('p').addclass("description");	
 
     	 //TESTING FOR IMAGE 
@@ -90,6 +143,11 @@ function getMarvelResponse() {
     	 var extensionImage = data.data.results[0].thumbnail.extension;
     	 var backImage = urlImage + "." + extensionImage;
 
+<<<<<<< HEAD
+=======
+    	 //converted image to a complete link
+
+>>>>>>> Elsa-Branch
     	 console.log(urlImage);
     	 console.log(extensionImage);
     	 console.log(backImage);
@@ -106,3 +164,107 @@ function getMarvelResponse() {
     });
 };
 
+<<<<<<< HEAD
+=======
+
+function getYouTube() {
+	
+	var characterName  = $('#superHero').val();
+	var youtubeApi = "AIzaSyBMbfmuvlnHD76RoFoCgRrzoTR8yLU_QS8";
+	var youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+ characterName + "originstory&key=" + youtubeApi;
+	console.log(youtubeUrl);
+	
+	$.ajax({
+  		url: youtubeUrl,
+  		method: 'GET'
+    })
+    .done(function(data) {
+    	console.log(data);
+
+    	$('.videoTitle').html('<h2 class="mainTitles">Origin Story</h2>')
+   
+    	var videoId1 = data.items[0].id.videoId
+    	var videoTitle1 = data.items[0].snippet.title
+    	console.log(videoId1)
+    	console.log(videoTitle1)
+    	var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId1+"' frameborder='0' type='text/html'></iframe>"
+    	var final="<div id='title'>"+videoTitle1+"</div><div class='frame'>"+videoFrame+"</div>";
+    	// videoTitle.append(videoFrame);
+    	$('.contentVideos').html(final);
+
+    	var videoId2 = data.items[1].id.videoId
+    	var videoTitle2 = data.items[1].snippet.title
+    	console.log(videoId2)
+    	console.log(videoTitle2)
+    	var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId2+"' frameborder='0' type='text/html'></iframe>"
+    	var final="<div id='title'>"+videoTitle2+"</div><div class='frame'>"+videoFrame+"</div>";
+   		$('.contentVideos2').html(final);
+
+    	var videoId3 = data.items[2].id.videoId
+    	var videoTitle3 = data.items[2].snippet.title
+    	console.log(videoId3)
+    	console.log(videoTitle3)
+    	var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId3+"' frameborder='0' type='text/html'></iframe>"
+    	var final="<div id='title'>"+videoTitle3+"</div><div class='frame'>"+videoFrame+"</div>";
+    	$('.contentVideos3').html(final);
+
+     	var videoId4 = data.items[3].id.videoId
+    	var videoTitle4 = data.items[3].snippet.title
+    	console.log(videoId4)
+    	console.log(videoTitle4)
+    	var videoFrame = "<iframe width='320' height='193' src='http://www.youtube.com/embed/"+videoId4+"' frameborder='0' type='text/html'></iframe>"
+    	var final="<div id='title'>"+videoTitle4+"</div><div class='frame'>"+videoFrame+"</div>";
+    	$('.contentVideos4').html(final);
+    })
+    // .fail(function(err){
+    //   // the error codes are listed on the dev site
+    // 	console.log(err);
+    // });
+};
+
+function _cb_findItemsByKeywords(){
+	var characterName  = $('#superHero').val();
+	var search = characterName + " marvel collectibles"
+	var ebayApi = "ElsaJose-Marvelme-PRD-599eca255-9a8b3c16"
+	var url = "http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME="+ebayApi+"&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords="+search+"&paginationInput.entriesPerPage=8";
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        success: function(ebayData){
+            var items = ebayData.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+            var html = [];
+            $('.memorabiliaTitle').html('<h2 class="mainTitles">Memorabilia</h2>')
+            $(html).push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
+
+            for (var i = 0; i < items.length; ++i)   {
+                var item     = items[i];
+                var title    = item.title;
+                var pic      = item.galleryURL;
+                var viewitem = item.viewItemURL;
+
+                if (null != title && null != viewitem) {
+                    html.push('<tr><td>' + '<img class="ebayImg" src="' + pic + '" border="0">' + '</td>' +
+                    '<td><a class="ebayTitle" href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
+                }
+            }
+            $(".ebayContent1").html(html);
+        }
+    });
+  }
+
+
+function validateInput (){
+  	var characterName  = $('#superHero').val();
+  	if (characterName === ""){
+  		var errorCode = $('.error').html("<h4 class='errorText'>*Please Add a Valid Name</h4>")
+  		$(".fullContent").hide();	
+  		
+  	}
+  	else{
+  		$(".fullContent").show();
+  		$('.error').empty();
+
+  	}
+}
+
+>>>>>>> Elsa-Branch

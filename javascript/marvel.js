@@ -129,6 +129,7 @@ function getMarvelResponse() {
     	 var p = $('<p>');
     	 p.addClass('description');
 <<<<<<< HEAD
+<<<<<<< HEAD
     	 p.text(description);
     	 $('.content').append(p);
 =======
@@ -136,6 +137,11 @@ function getMarvelResponse() {
     	 $('.content').html(p);
 
 >>>>>>> Elsa-Branch
+=======
+    	 p.html(description);
+    	 $('.content').prepend(p);
+
+>>>>>>> 1a81fd962bf6409e87b454c1780c1a26570a69f0
     	 // $('p').addclass("description");	
 
     	 //TESTING FOR IMAGE 
@@ -144,10 +150,15 @@ function getMarvelResponse() {
     	 var backImage = urlImage + "." + extensionImage;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     	 //converted image to a complete link
 
 >>>>>>> Elsa-Branch
+=======
+    	 //converted image to a complete link
+
+>>>>>>> 1a81fd962bf6409e87b454c1780c1a26570a69f0
     	 console.log(urlImage);
     	 console.log(extensionImage);
     	 console.log(backImage);

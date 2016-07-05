@@ -50,12 +50,12 @@ var PRIV_KEY = "df4fb8031dbc7cf2f465816737e0ea13379128b0"
 var PUBLIC_KEY = "a9a21fdf8a29de1099f5d2548b48a5d7";
 
 
-var xhr = new XMLHttpRequest();
-xhr.open("get", "http://gateway.marvel.com", true);
-xhr.onload = function(){  //instead of onreadystatechange
-    //do something
-};
-xhr.send(null);
+// var xhr = new XMLHttpRequest();
+// xhr.open("get", "http://gateway.marvel.com", true);
+// xhr.onload = function(){  //instead of onreadystatechange
+//     //do something
+// };
+// xhr.send(null);
 
 function getMarvelResponse() {
   var characterName  = $('#superHero').val();
